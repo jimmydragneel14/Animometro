@@ -18,21 +18,38 @@ library(ggplot2)
 
 # Por dia de la semana
 pwd <- ggplot(data = data, 
-            mapping =  aes(x = factor(week_day), fill = factor(happy),  label = "count"))
+            mapping =  aes(x = factor(week_day, labels = c("L", "K", "M", "J", "V", "S")),
+                           fill = factor(happy, labels = c("Felicidad", "Tristeza")),  label = "count"))
 
 # Por semana del año
 pw <- ggplot(data = data, 
-              mapping =  aes(x = factor(class_week), fill = factor(happy),  label = "count"))
+              mapping =  aes(x = factor(class_week), fill = factor(happy, labels = c("Felicidad", "Tristeza")),  label = "count"))
 
 # ===================
 #      Graficos
 # ===================
 
 # Felicidad por dia de la semana
-pwd +  geom_bar(position = "fill", stat = "count") 
+pwd + scale_y_continuous(labels = scales::percent) +
+  geom_bar(position = "fill", stat = "count") + 
+  labs (
+    title = "Ánimo a través de la semana",
+    fill = "",
+    x = "Día de la semana",
+    y = "Ánimo",
+    subtitle = "Felicidad & Tristeza"
+  )
 
 # Felicidad por semana del año
-pw +  geom_bar(position = "fill", stat = "count") 
+pw + scale_y_continuous(labels = scales::percent) +
+  geom_bar(position = "fill", stat = "count") + 
+  labs (
+    title = "Ánimo a través de las semanas del semestre",
+    fill = "",
+    x = "# de semana",
+    y = "Ánimo",
+    subtitle = "Felicidad & Tristeza"
+  )
 
 
 
