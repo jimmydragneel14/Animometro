@@ -61,6 +61,17 @@ pw + scale_y_continuous(labels = scales::percent) +
   )
 
 # Felicidad por hora
+ph + scale_y_continuous(labels = scales::percent) +
+  geom_bar(position = "fill", stat = "count") + 
+  labs (
+    title = "Ánimo a través del dia",
+    fill = "",
+    x = "Hora (24h), UTC -6",
+    y = "Ánimo",
+    subtitle = "Felicidad & Tristeza"
+  )
+
+# Felicidad por hora del dia
 pwh + scale_y_continuous(labels = scales::percent) +
   geom_bar(position = "fill", stat = "count") + 
   labs (
